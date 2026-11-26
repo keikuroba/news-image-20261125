@@ -75,10 +75,10 @@ def draw():
              "Headline rates of 20 to 40 percent, capped by existing trade deals. "
              "The Trump administration is set to unveil findings of a probe on excess "
              "factory capacity; nothing takes effect before a January 25 hearing.",
-             SANS(24), 928, 32)
+             SANS(23), 928, 30)
 
     # --- 2x2 grid ---
-    d.line([48, 372, 976, 372], fill=RULE, width=2)
+    d.line([48, 388, 976, 388], fill=RULE, width=2)
     stories = [
         ("MIDDLE EAST", "Mines hit tankers in the Strait of Hormuz",
          "Iran says four tankers and an LNG carrier struck naval mines and caught "
@@ -88,15 +88,14 @@ def draw():
          "A tanker carrying petroleum products overturned near Cairo and caught fire, "
          "flames spreading to nearby cars and motorcycles. Dozens were dead or injured."),
         ("SPACE", "China launches Shenzhou-24 with Pakistan's first astronaut",
-         "Shenzhou-24 lifted off carrying two Chinese astronauts and Pakistan's "
-         "Muhammad Zeeshan Ali, the first Pakistani in space, bound for the Tiangong "
-         "station."),
+         "Shenzhou-24 lifted off with two Chinese crew and Pakistan's "
+         "Muhammad Zeeshan Ali, the first Pakistani in space, for Tiangong."),
         ("MARKETS", "Wall Street slides as AI shares sell off",
-         "The S&P 500 fell about 2.2 percent and the Nasdaq about 3.2 percent in "
-         "midday trading, on AI, inflation and tariff fears; Asian stocks fell sharply."),
+         "The S&P 500 fell about 2.2 percent and the Nasdaq about 3.2 percent "
+         "in midday trading on AI, inflation and tariff fears."),
     ]
     col_w, col_x = 452, [48, 524]
-    row_y = [392, 592]
+    row_y = [408, 608]
     for i, (kick, head, body) in enumerate(stories):
         x = col_x[i % 2]
         yy = row_y[i // 2]
@@ -104,27 +103,28 @@ def draw():
         yy = para(d, x, yy + 26, head, SERIF_B(26), col_w, 32)
         para(d, x, yy + 4, body, SANS(20), col_w, 27)
 
-    # --- ticker ---
-    d.rectangle([0, 800, W, 906], fill=(232, 226, 210))
-    d.text((48, 812), "ALSO TODAY", font=SANS_B(19), fill=(150, 30, 30))
+    # --- ticker (2 columns x 3 rows) ---
+    d.rectangle([0, 800, W, 912], fill=(232, 226, 210))
+    d.text((48, 810), "ALSO TODAY", font=SANS_B(19), fill=(150, 30, 30))
     ticks = [
-        "Houthis hit Riyadh's tallest tower, 11 wounded.",
-        "Over 30 countries urge Russia to stop chemical agents in Ukraine.",
-        "Spain heads to a snap general election on Sunday.",
-        "Huawei convicted in a sprawling U.S. criminal trial over Iran business.",
-        "U.S. intelligence agencies CIA and ODNI hit by a cyber breach.",
-        "Nvidia reinstates Jensen Huang as chief executive.",
+        ("Houthis hit Riyadh tower, 11 wounded.",
+         "30+ nations urge Russia: stop chemical agents."),
+        ("Spain heads to a snap election on Sunday.",
+         "Huawei convicted in U.S. trial over Iran business."),
+        ("CIA, ODNI hit by a cyber breach.",
+         "Nvidia reinstates Jensen Huang as CEO."),
     ]
-    yy = 842
-    for t in ticks:
-        d.text((48, yy), "\u2022  " + t, font=SANS(18), fill=INK)
-        yy += 24
+    yy = 838
+    for left, right in ticks:
+        d.text((48, yy), "\u2022  " + left, font=SANS(18), fill=INK)
+        d.text((524, yy), "\u2022  " + right, font=SANS(18), fill=INK)
+        yy += 22
 
     # --- footer ---
-    d.line([48, 930, 976, 930], fill=RULE, width=2)
-    d.text((48, 946), "Sources: Reuters  •  Standard Topic  •  Open Chronicle",
+    d.line([48, 928, 976, 928], fill=RULE, width=2)
+    d.text((48, 942), "Sources: Reuters  •  Standard Topic  •  Open Chronicle",
            font=SANS(18), fill=MUTED)
-    d.text((48, 972), "Drawn by program — no photograph.  make.fun news-image-20261125",
+    d.text((48, 966), "Drawn by program — no photograph.  make.fun news-image-20261125",
            font=SANS(18), fill=MUTED)
 
     out_dir = os.path.dirname(OUTPUT_PATH)
